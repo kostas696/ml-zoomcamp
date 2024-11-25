@@ -153,7 +153,7 @@ curl -X 'POST' \
      ]'
 
 
-Example Response
+### Example Response
 
 {
   "predictions": [
