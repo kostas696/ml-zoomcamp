@@ -1,8 +1,3 @@
-import sys
-import os
-sys.stdout.flush()
-os.environ['PYTHONUNBUFFERED'] = '1'
-
 import os
 import joblib
 import pandas as pd
