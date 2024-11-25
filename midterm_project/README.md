@@ -84,66 +84,48 @@ Preprocessing steps include feature engineering, encoding categorical features, 
 ├── Dockerfile                # Docker container configuration
 ├── environment.yml           # Conda environment configuration
 ├── deployment_screenshots/   # Deployment screenshots
-
+```
 
 ## Reproducibility
-
-This project is fully reproducible. Follow these steps:
-
-## 1. Clone the Repository
-```bash
+1. Clone the Repository
 git clone https://github.com/kostas696/ml-zoomcamp.git
 cd ml-zoomcamp/midterm_project
 
-## **2. Set Up the Environment**
-Ensure `conda` is installed on your system. Create and activate the environment using the provided `environment.yml` file:
-
-```bash
+2. Set Up the Environment
+Ensure conda is installed on your system. Create and activate the environment using the provided environment.yml file:
 conda env create -f environment.yml
 conda activate gym-calories-env
 
-## **3. Download the Dataset**
-Download the dataset from Kaggle and place it in the `data` folder.
+3. Download the Dataset
+Download the dataset from Kaggle and place it in the data folder.
 
----
-
-## **4. Install Additional Dependencies**
-If required, install additional dependencies using the following command:
-
-```bash
+4. Install Additional Dependencies
+If required, install additional dependencies:
 pip install -r requirements.txt
 
-# Model Training and Deployment Workflow
-
-## **Training the Model**
+## Model Training and Deployment Workflow
+Training the Model
 Train the model and save artifacts:
 
-```bash
 python src/train.py
 
-# Prediction Service and Deployment Workflow
+Running the Prediction Service
 
-## **Running the Prediction Service**
+Start the FastAPI Service
 
-### **Start the FastAPI Service**
 Run the FastAPI service locally:
 
-```bash
 uvicorn src.predict:app --host 0.0.0.0 --port 8000 --reload
 
-
-# Prediction Service and Deployment Workflow
-
-## **Test the Service Using `curl`**
-
+## Testing the Service
+Test the Service Using curl
 Send a POST request to test the prediction service:
 
-```bash
 curl -X 'POST' \
      'http://127.0.0.1:8000/predict' \
      -H 'accept: application/json' \
      -H 'Content-Type: application/json' \
-     -d '[ 
+     -d '[
          {
              "session_duration": 1.5,
              "workout_intensity": 750.0,
@@ -170,11 +152,9 @@ curl -X 'POST' \
          }
      ]'
 
-# Example Response
 
-When the prediction service is called, it returns the following response:
+Example Response
 
-```json
 {
   "predictions": [
     1120.31,
@@ -182,46 +162,34 @@ When the prediction service is called, it returns the following response:
   ]
 }
 
-# Deployment
+## Deployment
 
-## **Containerization with Docker**
+### Containerization with Docker
+Build the Docker Image
 
-### **Build the Docker Image**
-To containerize the application, create a Docker image using the following command:
-
-```bash
 docker build -t gym-calories-service .
 
-# Run the Docker Container
+Start the Docker Container
+Expose the application on port 8000:
 
-### **Start the Container**
-To start the container and expose the application on port 8000, use the following command:
-
-```bash
 docker run -p 8000:8000 gym-calories-service
 
+## Results
+Best Model: CatBoost
+Test RMSE: 8.13
 
-# Results
+## Key Features:
+*Session Duration* - 
+*Workout Intensity*
 
-### **Best Model**: CatBoost  
-**Test RMSE**: 8.13  
+## Limitations
 
-### **Key Features**:
-- **Session Duration**
-- **Workout Intensity**
+Cloud deployment was not implemented but could be seamlessly integrated using platforms like AWS, GCP, or Azure.
+The model retraining pipeline is currently manual and could benefit from automation through CI/CD workflows.
 
----
-
-# Limitations
-
-1. Cloud deployment was not implemented but could be seamlessly integrated using platforms like AWS, GCP, or Azure.
-2. The model retraining pipeline is currently manual and could benefit from automation through CI/CD workflows.
-
----
-
-# Conclusion
-
+## Conclusion
 This project highlights:
+
 - Comprehensive exploratory data analysis (EDA) and feature engineering.
 - Effective model training and hyperparameter tuning.
 - A practical deployment of the model as a containerized web service for real-time predictions.
