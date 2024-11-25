@@ -16,5 +16,5 @@ This project aims to predict calories burned during gym sessions and analyze fit
 ├── models/                     # Saved model files (e.g., .pkl)
 ├── requirements.txt            # Dependencies
 ├── Dockerfile                  # Docker configuration
-└── tests/                      # Tests for API (optional)
+├── environment.yml             # Environment configuration
 ```
