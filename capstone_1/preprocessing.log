@@ -1,0 +1,14 @@
+2025-01-03 22:58:17,786 - INFO - Loading dataset from C:/Users/User/ml-zoomcamp/capstone_1/data/raw/air-quality-and-pollution-assessment/updated_pollution_dataset.csv
+2025-01-03 22:58:17,803 - INFO - Dataset loaded with shape: (5000, 10)
+2025-01-03 22:58:17,805 - INFO - Dropped 'pm2.5' column.
+2025-01-03 22:58:17,807 - INFO - Label encoder loaded from C:/Users/User/ml-zoomcamp/capstone_1/data/processed/label_encoder.pkl
+2025-01-03 22:58:17,817 - INFO - Split data into training and testing sets with shapes: (4000, 8), (1000, 8)
+2025-01-03 22:58:17,818 - INFO - Creating preprocessing pipeline...
+2025-01-03 22:58:17,824 - INFO - Replacing negative values in column 'pm10' with 0.1
+2025-01-03 22:58:17,830 - INFO - Replacing negative values in column 'so2' with 0.1
+2025-01-03 22:58:17,855 - INFO - Replacing negative values in column 'so2' with 0.1
+2025-01-03 22:58:17,864 - INFO - Applied preprocessing pipeline to data.
+2025-01-03 22:58:17,870 - INFO - Preprocessor saved at C:/Users/User/ml-zoomcamp/capstone_1/data/processed/preprocessor.pkl
+2025-01-03 22:58:17,871 - INFO - Best hyperparameters loaded from C:/Users/User/ml-zoomcamp/capstone_1/data/processed/best_params.pkl: {'iterations': 1236, 'depth': 6, 'learning_rate': 0.29335655105586117, 'l2_leaf_reg': 3.3560556586760066, 'border_count': 168}
+2025-01-03 22:58:29,912 - INFO - Model trained successfully.
+2025-01-03 22:58:29,987 - INFO - Trained model saved at C:/Users/User/ml-zoomcamp/capstone_1/models/final_model.pkl

@@ -1,0 +1,9 @@
+2025-01-03 23:17:38,587 - INFO - Preprocessor, model, and label encoder loaded successfully.
+2025-01-03 23:22:10,001 - INFO - Received input data: [{'temperature': 30.0, 'humidity': 70.0, 'pm10': 35.0, 'no2': 25.0, 'so2': 10.0, 'co': 1.2, 'proximity_to_industrial_areas': 8.0, 'population_density': 500.0}]
+2025-01-03 23:22:10,009 - INFO - Input data preprocessed successfully.
+2025-01-03 23:22:10,050 - INFO - Prediction: Moderate
+2025-01-03 23:24:26,121 - INFO - Preprocessor, model, and label encoder loaded successfully.
+2025-01-03 23:24:31,389 - INFO - Preprocessor, model, and label encoder loaded successfully.
+2025-01-03 23:29:29,550 - INFO - Received input data: [{'temperature': 22.0, 'humidity': 90.0, 'pm10': 40.0, 'no2': 30.0, 'so2': 18.0, 'co': 2.0, 'proximity_to_industrial_areas': 15.0, 'population_density': 1000.0}]
+2025-01-03 23:29:29,560 - INFO - Input data preprocessed successfully.
+2025-01-03 23:29:29,577 - INFO - Prediction: Poor
