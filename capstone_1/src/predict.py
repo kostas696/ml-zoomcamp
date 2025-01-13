@@ -1,4 +1,6 @@
 from fastapi import FastAPI, HTTPException
+from prometheus_client import Counter, Summary, generate_latest
+from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
 import pandas as pd
 import joblib
@@ -6,9 +8,8 @@ import os
 import logging
 from dotenv import load_dotenv
 import sys
-import os
 
-# Add the src folder to sys.path
+# Add src to Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Configure logging
@@ -26,6 +27,10 @@ load_dotenv()
 
 # Initialize FastAPI app
 app = FastAPI()
+
+# Prometheus metrics
+REQUEST_COUNT = Counter('request_count', 'Number of requests received', ['method', 'endpoint'])
+PREDICTION_TIME = Summary('prediction_time', 'Time taken to process predictions')
 
 # Load resources dynamically
 try:
@@ -60,14 +65,17 @@ class InputData(BaseModel):
 
 @app.get("/")
 def read_root():
+    REQUEST_COUNT.labels(method="GET", endpoint="/").inc()
     return {"message": "Welcome to the Air Quality Prediction API!"}
 
 @app.post("/predict")
+@PREDICTION_TIME.time()
 def predict(data: InputData):
     try:
         # Convert input data to DataFrame
         input_df = pd.DataFrame([data.dict()])
         logging.info(f"Received input data: {input_df.to_dict(orient='records')}")
+        REQUEST_COUNT.labels(method="POST", endpoint="/predict").inc()
 
         # Apply preprocessing pipeline
         input_preprocessed = preprocessor.transform(input_df)
@@ -83,3 +91,7 @@ def predict(data: InputData):
     except Exception as e:
         logging.exception("An error occurred during prediction.")
         raise HTTPException(status_code=500, detail="Prediction failed. Please check the server logs for details.")
+
+@app.get("/metrics", response_class=PlainTextResponse)
+def metrics():
+    return generate_latest()

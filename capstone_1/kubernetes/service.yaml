@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: air-quality-service
+spec:
+  selector:
+    app: air-quality-predictor
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: LoadBalancer

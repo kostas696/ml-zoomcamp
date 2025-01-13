@@ -67,3 +67,84 @@ Traceback (most recent call last):
   File "C:\Users\User\ml-zoomcamp\capstone_1\src\predict.py", line 38, in <module>
     raise ValueError("Environment variables for file paths are not properly configured.")
 ValueError: Environment variables for file paths are not properly configured.
+2025-01-11 18:12:27,818 - ERROR - One or more environment variables for file paths are missing.
+2025-01-11 18:12:27,819 - ERROR - Failed to load preprocessor, model, or label encoder.
+Traceback (most recent call last):
+  File "C:\Users\User\ml-zoomcamp\capstone_1\src\predict.py", line 38, in <module>
+    raise ValueError("Environment variables for file paths are not properly configured.")
+ValueError: Environment variables for file paths are not properly configured.
+2025-01-12 16:12:33,047 - ERROR - Failed to load preprocessor, model, or label encoder.
+Traceback (most recent call last):
+  File "C:\Users\User\ml-zoomcamp\capstone_1\src\predict.py", line 40, in <module>
+    preprocessor = joblib.load(preprocessor_path)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\site-packages\joblib\numpy_pickle.py", line 658, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\site-packages\joblib\numpy_pickle.py", line 577, in _unpickle
+    obj = unpickler.load()
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1537, in load_stack_global
+    self.append(self.find_class(module, name))
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1579, in find_class
+    __import__(module, level=0)
+ModuleNotFoundError: No module named 'preprocessing'
+2025-01-12 16:20:18,584 - ERROR - Failed to load preprocessor, model, or label encoder.
+Traceback (most recent call last):
+  File "C:\Users\User\ml-zoomcamp\capstone_1\src\predict.py", line 44, in <module>
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\site-packages\joblib\numpy_pickle.py", line 658, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\site-packages\joblib\numpy_pickle.py", line 577, in _unpickle
+    obj = unpickler.load()
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1537, in load_stack_global
+    self.append(self.find_class(module, name))
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1579, in find_class
+    __import__(module, level=0)
+ModuleNotFoundError: No module named 'preprocessing'
+2025-01-12 16:20:25,386 - ERROR - Failed to load preprocessor, model, or label encoder.
+Traceback (most recent call last):
+  File "C:\Users\User\ml-zoomcamp\capstone_1\src\predict.py", line 40, in <module>
+    preprocessor = joblib.load(preprocessor_path)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\site-packages\joblib\numpy_pickle.py", line 658, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\site-packages\joblib\numpy_pickle.py", line 577, in _unpickle
+    obj = unpickler.load()
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1537, in load_stack_global
+    self.append(self.find_class(module, name))
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1579, in find_class
+    __import__(module, level=0)
+ModuleNotFoundError: No module named 'preprocessing'
+2025-01-12 16:24:44,806 - ERROR - Failed to load preprocessor, model, or label encoder.
+Traceback (most recent call last):
+  File "C:\Users\User\ml-zoomcamp\capstone_1\src\predict.py", line 40, in <module>
+    preprocessor = joblib.load(preprocessor_path)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\site-packages\joblib\numpy_pickle.py", line 658, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\site-packages\joblib\numpy_pickle.py", line 577, in _unpickle
+    obj = unpickler.load()
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1537, in load_stack_global
+    self.append(self.find_class(module, name))
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1579, in find_class
+    __import__(module, level=0)
+ModuleNotFoundError: No module named 'preprocessing'
+2025-01-12 16:27:04,705 - ERROR - Failed to load preprocessor, model, or label encoder.
+Traceback (most recent call last):
+  File "C:\Users\User\ml-zoomcamp\capstone_1\src\predict.py", line 41, in <module>
+    model = joblib.load(model_path)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\site-packages\joblib\numpy_pickle.py", line 658, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\site-packages\joblib\numpy_pickle.py", line 577, in _unpickle
+    obj = unpickler.load()
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1212, in load
+    dispatch[key[0]](self)
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1537, in load_stack_global
+    self.append(self.find_class(module, name))
+  File "C:\Users\User\miniconda3\envs\air_quality_env\lib\pickle.py", line 1579, in find_class
+    __import__(module, level=0)
+ModuleNotFoundError: No module named 'catboost'
+2025-01-12 16:32:47,624 - INFO - Preprocessor, model, and label encoder loaded successfully.
