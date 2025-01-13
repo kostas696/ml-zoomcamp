@@ -20,7 +20,7 @@ COPY . /app
 # Set PYTHONPATH to include the src directory
 ENV PYTHONPATH=/app/src
 
-# Expose the port the app runs on
+# Expose the port the app runs on (for local testing)
 EXPOSE 8000
 
 # Define environment variables for file paths
@@ -28,5 +28,9 @@ ENV PREPROCESSOR_PATH=/app/data/processed/preprocessor.pkl
 ENV MODEL_PATH=/app/models/final_model.pkl
 ENV LABEL_ENCODER_PATH=/app/data/processed/label_encoder.pkl
 
+# Copy necessary directories
+COPY data/ /app/data/
+COPY models/ /app/models/
+
 # Command to run the app
-CMD ["uvicorn", "src.predict:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "src.predict:app", "--host", "0.0.0.0", "--port", "$PORT", "--reload"]

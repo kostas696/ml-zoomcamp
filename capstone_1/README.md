@@ -197,21 +197,10 @@ The `kubernetes/` folder contains:
 
 ---
 
-## Evaluation Criteria
-
-- **Problem Description:** Comprehensive overview.
-- **EDA:** Extensive analysis included in the notebook.
-- **Model Training:** Multiple models and parameter tuning.
-- **Reproducibility:** Scripts and clear instructions provided.
-- **Deployment:** Cloud and Kubernetes deployment demonstrated.
-- **Monitoring:** Integrated Prometheus and Grafana.
-
----
-
 ## References
 
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
 - [Prometheus Documentation](https://prometheus.io/docs/)
-- [rafana Documentation](https://grafana.com/docs/)
+- [Grafana Documentation](https://grafana.com/docs/)
 - [Render Deployment](https://render.com/)
 
