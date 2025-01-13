@@ -33,4 +33,4 @@ COPY data/ /app/data/
 COPY models/ /app/models/
 
 # Command to run the app
-CMD ["uvicorn", "src.predict:app", "--host", "0.0.0.0", "--port", "$PORT", "--reload"]
+CMD ["sh", "-c", "uvicorn src.predict:app --host 0.0.0.0 --port ${PORT:-8000}"]

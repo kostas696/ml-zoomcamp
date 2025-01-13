@@ -8,6 +8,7 @@ import os
 import logging
 from dotenv import load_dotenv
 import sys
+import uvicorn
 
 # Add src to Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -95,3 +96,8 @@ def predict(data: InputData):
 @app.get("/metrics", response_class=PlainTextResponse)
 def metrics():
     return generate_latest()
+
+if __name__ == "__main__":
+    # Use dynamic port for deployment (Render)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
