@@ -129,8 +129,8 @@ Air pollution poses a significant threat to public health and the environment. A
 
 3. Test the deployed service at: [Air Quality Predictor on Render](https://air-quality-predictor.onrender.com)
 
-4. Explore and test the API interactively at: [Air Quality Predictor API](https://air-quality-predictor.onrender.com/docs)
-You can submit prediction requests directly from the /docs page and see real-time responses.
+4. Explore and test the API interactively at: [Air Quality Predictor API](https://air-quality-predictor.onrender.com/docs). 
+     - You can submit prediction requests directly from the /docs page and see real-time responses.
 
 ---
 
