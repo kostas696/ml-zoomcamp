@@ -7,30 +7,25 @@ ENV PYTHONUNBUFFERED=1
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy only requirements first for layer caching
-COPY requirements.txt /app/
+# Copy the local files to the container
+COPY . /app
+
+# Copy the required model and preprocessor files
+COPY data/processed/preprocessor.pkl /app/data/processed/preprocessor.pkl
+COPY models/final_model.pkl /app/models/final_model.pkl
+COPY data/processed/label_encoder.pkl /app/data/processed/label_encoder.pkl
 
 # Install dependencies
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application files
-COPY . /app
-
-# Set PYTHONPATH to include the src directory
-ENV PYTHONPATH=/app/src
-
-# Expose the port the app runs on (for local testing)
+# Expose the port the app runs on
 EXPOSE 8000
 
 # Define environment variables for file paths
 ENV PREPROCESSOR_PATH=/app/data/processed/preprocessor.pkl
 ENV MODEL_PATH=/app/models/final_model.pkl
 ENV LABEL_ENCODER_PATH=/app/data/processed/label_encoder.pkl
-
-# Copy necessary directories
-COPY data/ /app/data/
-COPY models/ /app/models/
 
 # Command to run the app
 CMD ["sh", "-c", "uvicorn src.predict:app --host 0.0.0.0 --port ${PORT:-8000}"]
