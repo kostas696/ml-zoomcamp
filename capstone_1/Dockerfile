@@ -7,13 +7,11 @@ ENV PYTHONUNBUFFERED=1
 # Set the working directory in the container
 WORKDIR /app
 
+# Add src to PYTHONPATH
+ENV PYTHONPATH=/app/src
+
 # Copy the local files to the container
 COPY . /app
-
-# Copy the required model and preprocessor files
-COPY data/processed/preprocessor.pkl /app/data/processed/preprocessor.pkl
-COPY models/final_model.pkl /app/models/final_model.pkl
-COPY data/processed/label_encoder.pkl /app/data/processed/label_encoder.pkl
 
 # Install dependencies
 RUN pip install --no-cache-dir --upgrade pip \
@@ -22,10 +20,12 @@ RUN pip install --no-cache-dir --upgrade pip \
 # Expose the port the app runs on
 EXPOSE 8000
 
-# Define environment variables for file paths
+# Set environment variables for deployment
 ENV PREPROCESSOR_PATH=/app/data/processed/preprocessor.pkl
 ENV MODEL_PATH=/app/models/final_model.pkl
 ENV LABEL_ENCODER_PATH=/app/data/processed/label_encoder.pkl
+ENV DATASET_PATH=/app/data/raw/air-quality-and-pollution-assessment/updated_pollution_dataset.csv
+ENV PORT=8000
 
 # Command to run the app
-CMD ["sh", "-c", "uvicorn src.predict:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["uvicorn", "src.predict:app", "--host", "0.0.0.0", "--port", "8000"]

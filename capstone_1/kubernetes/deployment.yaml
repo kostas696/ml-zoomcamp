@@ -25,7 +25,7 @@ spec:
           value: "/app/models/final_model.pkl"
         - name: LABEL_ENCODER_PATH
           value: "/app/data/processed/label_encoder.pkl"
-        resources: # Optional resource management
+        resources: 
           requests:
             memory: "128Mi"
             cpu: "250m"

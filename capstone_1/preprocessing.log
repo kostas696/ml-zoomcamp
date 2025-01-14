@@ -12,3 +12,22 @@
 2025-01-03 22:58:17,871 - INFO - Best hyperparameters loaded from C:/Users/User/ml-zoomcamp/capstone_1/data/processed/best_params.pkl: {'iterations': 1236, 'depth': 6, 'learning_rate': 0.29335655105586117, 'l2_leaf_reg': 3.3560556586760066, 'border_count': 168}
 2025-01-03 22:58:29,912 - INFO - Model trained successfully.
 2025-01-03 22:58:29,987 - INFO - Trained model saved at C:/Users/User/ml-zoomcamp/capstone_1/models/final_model.pkl
+2025-01-14 17:05:29,476 - INFO - Loading dataset from C:\Users\User\ml-zoomcamp\capstone_1\data\raw\air-quality-and-pollution-assessment\updated_pollution_dataset.csv
+2025-01-14 17:05:29,604 - INFO - Dataset loaded with shape: (5000, 10)
+2025-01-14 17:05:29,608 - INFO - Numerical features identified: ['temperature', 'humidity', 'pm2.5', 'pm10', 'no2', 'so2', 'co', 'proximity_to_industrial_areas', 'population_density']
+2025-01-14 17:05:29,610 - INFO - Creating preprocessing pipeline...
+2025-01-14 17:05:29,618 - INFO - Preprocessing pipeline saved at C:\Users\User\ml-zoomcamp\capstone_1\data\processed\preprocessor.pkl
+2025-01-14 17:06:35,172 - INFO - Loading dataset from C:\Users\User\ml-zoomcamp\capstone_1\data\raw\air-quality-and-pollution-assessment\updated_pollution_dataset.csv
+2025-01-14 17:06:35,229 - INFO - Dataset loaded with shape: (5000, 10)
+2025-01-14 17:06:35,253 - INFO - Dropped 'pm2.5' column.
+2025-01-14 17:06:35,324 - INFO - Label encoder loaded from C:\Users\User\ml-zoomcamp\capstone_1\data\processed\label_encoder.pkl
+2025-01-14 17:06:35,367 - INFO - Split data into training and testing sets with shapes: (4000, 8), (1000, 8)
+2025-01-14 17:06:35,375 - INFO - Creating preprocessing pipeline...
+2025-01-14 17:06:35,459 - INFO - Replacing negative values in column 'pm10' with 0.1
+2025-01-14 17:06:35,469 - INFO - Replacing negative values in column 'so2' with 0.1
+2025-01-14 17:06:35,826 - INFO - Replacing negative values in column 'so2' with 0.1
+2025-01-14 17:06:35,841 - INFO - Applied preprocessing pipeline to data.
+2025-01-14 17:06:35,878 - INFO - Preprocessor saved at C:\Users\User\ml-zoomcamp\capstone_1\data\processed\preprocessor.pkl
+2025-01-14 17:06:35,905 - INFO - Best hyperparameters loaded from C:\Users\User\ml-zoomcamp\capstone_1\data\processed\best_params.pkl: {'iterations': 1236, 'depth': 6, 'learning_rate': 0.29335655105586117, 'l2_leaf_reg': 3.3560556586760066, 'border_count': 168}
+2025-01-14 17:07:23,493 - INFO - Model trained successfully.
+2025-01-14 17:07:23,546 - INFO - Trained model saved at C:\Users\User\ml-zoomcamp\capstone_1\models\final_model.pkl

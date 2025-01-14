@@ -1,14 +1,24 @@
+
 # Air Quality Prediction Project
 
 ## Description of the Problem
 
-Air pollution poses a significant threat to public health and the environment. Accurately predicting air quality can help governments, industries, and individuals take proactive measures to reduce its impact. This project aims to develop a robust machine learning model that predicts air quality based on environmental and demographic metrics. The solution is deployed as a web service, enabling easy integration with applications for monitoring and decision-making.
+Air pollution poses a significant threat to public health and the environment. Accurately predicting air quality can help governments, industries, and individuals take proactive measures to reduce its impact. This project develops a robust machine learning model that predicts air quality based on environmental and demographic metrics. The solution is deployed as a web service, enabling seamless integration with monitoring applications and decision-making tools.
+
+---
+
+## Architecture Diagram
+
+![Air Quality Prediction System Architecture](./images/project_architecture.png)
+
+---
 
 ## Instructions to Run the Project
 
 ### Prerequisites
 
-- Install Docker, Kubernetes (kind or Minikube), and optionally Prometheus and Grafana.
+- Install Docker and Kubernetes (e.g., Kind or Minikube).
+- Optionally set up Prometheus and Grafana for monitoring.
 - Clone the repository:
   ```bash
   git clone https://github.com/kostas696/ml-zoomcamp
@@ -28,28 +38,33 @@ Air pollution poses a significant threat to public health and the environment. A
    pip install -r requirements.txt
    ```
 
+---
+
 ### Run Locally
 
-1. Train the model:
+1. Preprocess the data and generate artifacts:
+   ```bash
+   python src/preprocessing.py
+   ```
+
+2. Train the model:
    ```bash
    python src/train.py
    ```
 
-2. Serve the model:
+3. Serve the model:
    ```bash
    uvicorn src.predict:app --reload
    ```
 
-3. Test the service:
+4. Test the service:
    - **Health Check:**
      ```bash
      curl http://127.0.0.1:8000
      ```
    - **Prediction:**
      ```bash
-     curl -X POST http://127.0.0.1:8000/predict \
-     -H "Content-Type: application/json" \
-     -d '{
+     curl -X POST http://127.0.0.1:8000/predict      -H "Content-Type: application/json"      -d '{
          "temperature": 25.0,
          "humidity": 50.0,
          "pm10": 10.5,
@@ -60,6 +75,8 @@ Air pollution poses a significant threat to public health and the environment. A
          "population_density": 1500
      }'
      ```
+
+---
 
 ### Containerization and Deployment
 
@@ -72,7 +89,7 @@ Air pollution poses a significant threat to public health and the environment. A
 
 2. Run the Docker container:
    ```bash
-   docker run -p 8000:8000 air-quality-predictor
+   docker run --env-file .env -p 8000:8000 air-quality-predictor
    ```
 
 #### Kubernetes Deployment
@@ -96,14 +113,21 @@ Air pollution poses a significant threat to public health and the environment. A
 
 #### Cloud Deployment (Render)
 
-1. Configure the Render service with the following:
-   - Dockerfile Path: `./Dockerfile`
-   - Environment Variables:
-     - `PREPROCESSOR_PATH: /app/data/processed/preprocessor.pkl`
-     - `MODEL_PATH: /app/models/final_model.pkl`
-     - `LABEL_ENCODER_PATH: /app/data/processed/label_encoder.pkl`
+1. Push the Docker image to Docker Hub:
+   ```bash
+   docker tag air-quality-predictor kostas696/air-quality-predictor
+   docker push kostas696/air-quality-predictor
+   ```
 
-2. Deploy the application and use the provided URL for testing.
+2. Configure the Render service:
+   - Select Docker as the deployment option.
+   - Use `kostas696/air-quality-predictor` as the image.
+   - Set environment variables:
+     - `PREPROCESSOR_PATH=/app/data/processed/preprocessor.pkl`
+     - `MODEL_PATH=/app/models/final_model.pkl`
+     - `LABEL_ENCODER_PATH=/app/data/processed/label_encoder.pkl`
+
+3. Test the deployed service at: [Air Quality Predictor on Render](https://air-quality-predictor.onrender.com)
 
 ---
 
@@ -111,7 +135,7 @@ Air pollution poses a significant threat to public health and the environment. A
 
 ### Dataset
 
-The dataset used is publicly available on Kaggle: [Air Quality Dataset](https://www.kaggle.com/).
+The dataset is publicly available on Kaggle: [Air Quality Dataset](https://www.kaggle.com/datasets/mujtabamatin/air-quality-and-pollution-assessment).
 
 #### Features:
 - Temperature
@@ -123,40 +147,32 @@ The dataset used is publicly available on Kaggle: [Air Quality Dataset](https://
 - Proximity to industrial areas
 - Population density
 
-### Preprocessing
+---
 
-1. Data cleaning and handling missing values.
-2. Feature engineering and scaling.
-3. Label encoding for categorical variables.
+## Insights from the Notebook
+
+### Key Observations for Target Variable
+
+#### Target Variable: Air Quality
+- **Distribution**: The target variable "air_quality" has four categories: Good, Moderate, Poor, and Hazardous.
+- **Imbalance**: 
+  - The majority class (Good) accounts for 40% of the total samples.
+  - The Hazardous class represents only 10% of the data, indicating significant class imbalance.
+- **Real-World Impact**:
+  - Misclassifying Hazardous air quality as Good or Moderate could lead to severe consequences.
+  - Evaluating models with weighted metrics (e.g., Weighted F1-Score) ensures all classes are fairly represented.
 
 ---
 
-## Notebook
+## Modeling Highlights
 
-The notebook (`notebooks/notebook.ipynb`) contains:
-
-- Data Preparation
-- Exploratory Data Analysis (EDA)
-- Feature Importance Analysis
-- Model Selection and Hyperparameter Tuning
-
----
-
-## Scripts
-
-### Train Script
-
-The `src/train.py` script:
-- Trains multiple models (linear and tree-based).
-- Tunes hyperparameters using GridSearchCV.
-- Saves the best model and preprocessing pipeline using `joblib`.
-
-### Prediction Script
-
-The `src/predict.py` script:
-- Loads the trained model, preprocessor, and label encoder.
-- Serves the model via FastAPI.
-- Includes Prometheus metrics for monitoring.
+- **Feature Importance**: Carbon Monoxide (CO) and proximity to industrial areas were the most critical features, followed by NO2 and SO2.
+- **Best Performing Model**: 
+  - **CatBoost** achieved a Weighted F1-Score of **0.9578** after hyperparameter tuning.
+  - XGBoost and LightGBM were strong competitors, with scores of **0.9497** and **0.9491**, respectively.
+- **Class Imbalance Handling**: 
+  - Applied class weights to ensure fair evaluation and prediction accuracy for minority classes.
+  - Evaluated per-class recall to ensure critical cases (Hazardous) were accurately predicted.
 
 ---
 
@@ -164,18 +180,15 @@ The `src/predict.py` script:
 
 ### Dockerfile
 
-The Dockerfile includes:
+Defines:
 - Base image: `python:3.9-slim`
-- Installation of dependencies
-- Copying project files
-- Setting up environment variables
-- Running the FastAPI service
+- Required dependencies and environment variables.
+- Configuration to serve the FastAPI app.
 
 ### Kubernetes
 
-The `kubernetes/` folder contains:
-- `deployment.yaml`: Configures pods and replicas for the app.
-- `service.yaml`: Exposes the app as a LoadBalancer.
+The `kubernetes/` folder includes:
+- Deployment and Service configurations for the app.
 - Prometheus and Grafana configurations.
 
 ---
@@ -184,16 +197,16 @@ The `kubernetes/` folder contains:
 
 ### Prometheus
 
-- Scrapes metrics from `/metrics` endpoint.
+- Scrapes metrics from the `/metrics` endpoint.
 - Monitors request counts, response times, and error rates.
 
 ### Grafana
 
-- Visualizes metrics collected by Prometheus.
-- Dashboards include:
+- Visualizes metrics from Prometheus.
+- Includes dashboards for:
   - Request counts
-  - Response latencies
-  - Uptime
+  - Latencies
+  - Uptime metrics
 
 ---
 
@@ -203,4 +216,3 @@ The `kubernetes/` folder contains:
 - [Prometheus Documentation](https://prometheus.io/docs/)
 - [Grafana Documentation](https://grafana.com/docs/)
 - [Render Deployment](https://render.com/)
-

@@ -148,3 +148,4 @@ Traceback (most recent call last):
     __import__(module, level=0)
 ModuleNotFoundError: No module named 'catboost'
 2025-01-12 16:32:47,624 - INFO - Preprocessor, model, and label encoder loaded successfully.
+2025-01-14 17:07:58,870 - INFO - Preprocessor, model, and label encoder loaded successfully.
